@@ -9,9 +9,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Enemy enemyPrefab;
 
+    [Header("Scene references")]
+    [SerializeField]
+    private Transform enemySpawn;
+
+    [Header("Settings")]
     [SerializeField]
     private float spawnInterval;
-
     [SerializeField]
     private int defaultWaveSize;
 
@@ -22,6 +26,8 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator Start()
     {
+        enemyPool = new ObjectPool<Enemy>(6, enemyPrefab);
+
         for (int i = 0; i < defaultWaveSize; i++)
         {
             SpawnEnemy();
@@ -40,6 +46,15 @@ public class EnemyController : MonoBehaviour
 
     private void SpawnEnemy()
     {
+        Enemy enemy = enemyPool.GetObject();
+        enemy.transform.position = enemySpawn.position;
+        enemy.OnDestruction += DespawnEnemy;
+        activeEnemies.Add(enemy);
+    }
 
+    private void DespawnEnemy(Enemy enemyToDespawn)
+    {
+        enemyToDespawn.OnDestruction -= DespawnEnemy;
+        enemyPool.AddToPool(enemyToDespawn);
     }
 }

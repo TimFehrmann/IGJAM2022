@@ -1,0 +1,46 @@
+# Control the Level
+
+## Control Soundwaves
+- Repeat Button for Intensity
+- Mouse Mouse for wave origin
+- Move stuff (Attract/Repulse)
+
+## Use Sound Waves to redirect Bullet
+
+## Controlable Things
+- Contrast -> Pass through wall if wall can not be seen
+- Volume
+- Physics Intensity
+
+## UI-Element Simulation
+
+## All Level components have Buttons assigned
+
+## Side Scroller with shop to buy level components
+
+## Reverse Snake
+
+## What can happen automatically?
+
+
+## 
+- Components
+	- Something spawning rockets
+	- Maybe on wheels moving along Screen Border?
+	- Something to hit/ defend from
+	- Shop
+		- Buy Level Elements
+		- Upgrade Stuff
+			- Rocket Size
+			- Rocket Speed
+			- Rocket Explosion Radius
+			- Rocket Spawn Interval
+			- Enemy Speed
+			- Max Level Elements
+	- Level Elements
+		- Are placed
+		- Do Stuff (Redirect, Attract)
+		- Despawn after X Seconds (Displayed on it)
+- References
+	- Assets
+		- https://www.kenney.nl/assets/space-kit

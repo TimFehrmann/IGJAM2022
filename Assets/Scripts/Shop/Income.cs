@@ -42,7 +42,7 @@ public class Income : MonoBehaviour
         UpdateCashTextColor(config.TextColor);
     }
 
-    private void Update()
+    public void OnUpdate()
     {
         timePassedOfInterval += Time.deltaTime;
         bool exceededInterval = timePassedOfInterval > incomeIntervalInSeconds;

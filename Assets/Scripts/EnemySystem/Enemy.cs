@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IPathable
 {
-    public Action<Enemy> OnDestruction;
+    public event Action<Enemy> OnDestruction;
 
     [Header("Settings")]
     [SerializeField]

@@ -32,15 +32,6 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         enemyPool = new ObjectPool<Enemy>(6, enemyPrefab);
-
-        StartCoroutine(SpawnWave());
-    }
-
-
-    //TODO: Remove and invoke OnUpdate in GameController (tbd)
-    private void Update()
-    {
-        OnUpdate();
     }
 
     public void OnUpdate()
@@ -49,6 +40,11 @@ public class EnemyController : MonoBehaviour
         {
             activeEnemies[i].UpdateMovement();
         }
+    }
+
+    public void SpawnNewWave()
+    {
+        StartCoroutine(SpawnWave());
     }
 
     private IEnumerator SpawnWave()

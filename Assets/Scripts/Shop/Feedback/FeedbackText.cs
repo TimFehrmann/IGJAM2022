@@ -30,7 +30,7 @@ public class FeedbackText : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
-        feedbackTextObjectPool.AddToPool(this);
+        feedbackTextObjectPool.ReturnToPool(this);
     }
 
     private void Awake()

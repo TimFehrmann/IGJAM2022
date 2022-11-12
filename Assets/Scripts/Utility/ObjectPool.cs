@@ -74,7 +74,7 @@ namespace Assets.Scripts.Utility
             return result;
         }
 
-        public void AddToPool(T obj)
+        public void ReturnToPool(T obj)
         {
             obj.gameObject.SetActive(false);
             pool.Add(obj);

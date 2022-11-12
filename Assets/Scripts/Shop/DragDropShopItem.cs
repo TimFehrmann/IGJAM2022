@@ -4,6 +4,10 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(ShopItem))]
 public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    [SerializeField]
+    private InputConfig inputConfig;
+
+    private IInputProcessor input;
     // Cache
     private Shop shop;
     private ShopItem shopItem;
@@ -14,6 +18,7 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     {
         shop = FindObjectOfType<Shop>();
         shopItem = GetComponent<ShopItem>();
+        input = inputConfig.InputType == InputConfig.INPUTTYPE.MOUSE ? new MouseInputProcessor() : new TouchInputProcessor();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -83,8 +88,8 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     }
 
     private Vector2 GetMouseWorldPosition() {
-        Vector2 mousePos = Input.mousePosition;
-        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector2 inputPosition = input.InputPosition();
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(inputPosition);
         return worldPosition;
     }
 }

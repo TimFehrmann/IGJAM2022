@@ -20,6 +20,7 @@ public class PlacementSystem : MonoBehaviour
     public void DeregisterLevelItem(LevelItem levelItem)
     {
         levelItemsToRemove.Add(levelItem);
+        levelItem.onDestruction -= DeregisterLevelItem;
         OnDestruction(levelItem);
     }
 

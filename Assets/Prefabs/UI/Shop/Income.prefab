@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 4285793311096076335}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4285793310357218603
 MonoBehaviour:
@@ -49,6 +49,7 @@ MonoBehaviour:
   incomeIntervalInSeconds: 1
   incomePerInterval: 20
   cashText: {fileID: 4285793312242982537}
+  incomeFeedback: {fileID: 0}
 --- !u!1 &4285793311069576103
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,8 +395,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -412,8 +413,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0

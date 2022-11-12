@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TextColor: {r: 0, g: 0, b: 0, a: 1}
+  AlternativeTextColor: {r: 1, g: 1, b: 1, a: 1}
   TextValidColor: {r: 0, g: 1, b: 0.057819128, a: 1}
   TextInvalidColor: {r: 1, g: 0, b: 0, a: 1}

@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IPathable
 {
+    public Action<Enemy> OnDestruction;
+
     [Header("Settings")]
     [SerializeField]
     private float speed;
@@ -14,13 +16,14 @@ public class Enemy : MonoBehaviour
     [Header("Local References")]
     [SerializeField]
     private SpriteRenderer enemyRenderer;
+    [SerializeField]
+    private EnemySpriteRotator spriteRotator;
 
-    private PathObject nextPathObject;
     private Transform myTransform;
 
-    public Action<Enemy> OnDestruction;
+    private Vector2 moveDirection;
 
-    private void Start()
+    private void Awake()
     {
         myTransform = GetComponent<Transform>();
     }
@@ -32,20 +35,26 @@ public class Enemy : MonoBehaviour
 
     public void UpdateMovement()
     {
-        Vector2 targetPosition = nextPathObject.GetPosition();
-        myTransform.position = Vector2.MoveTowards(myTransform.position, targetPosition, speed * Time.deltaTime);
-        float distanceToTarget = Vector2.Distance(myTransform.position, targetPosition);
-        if (distanceToTarget <= 1.0f)
-        {
-            nextPathObject = nextPathObject.NextObject;
-        }
+        Vector2 frameMovement = moveDirection * speed * Time.deltaTime;
+        myTransform.Translate(frameMovement);
     }
 
     public void Destroy()
     {
-        if(OnDestruction != null)
+        if (OnDestruction != null)
         {
             OnDestruction(this);
         }
+    }
+
+    public void SetClockwiseDirection(DIRECTION direction)
+    {
+        spriteRotator.SetClockwiseDirection(direction);
+    }
+
+    public void SetMoveDirection(DIRECTION direction)
+    {
+        moveDirection = direction.ToVector2();
+        spriteRotator.SetSpriteRotation(direction);
     }
 }

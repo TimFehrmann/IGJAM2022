@@ -6,7 +6,7 @@ public class ShopItem : MonoBehaviour
     public Vector2 ShopScale { get => scale; }
 
     public int Price;
-    public DraggedLevelItem levelItem;
+    public DraggedLevelItem DraggedLevelItem;
 
     [SerializeField] private float scaleValue = 1;
     [SerializeField] private TextMeshProUGUI costText;

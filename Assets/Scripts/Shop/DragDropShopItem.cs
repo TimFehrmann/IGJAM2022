@@ -24,7 +24,7 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     public void OnBeginDrag(PointerEventData eventData)
     {
         // Create Duplicate to drag
-        DraggedLevelItem levelItem = Instantiate(shopItem.levelItem);
+        DraggedLevelItem levelItem = Instantiate(shopItem.DraggedLevelItem);
         levelItem.LevelItemPreview.SetPrice(shopItem.Price);
         itemBeingDragged = levelItem;
     }
@@ -58,6 +58,7 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         {
             shop.BuyItem(shopItem);
             itemBeingDragged.LevelItemPreview.SetPriceEnabled(false);
+            shop.PlacementSystem.RegisterLevelItem(itemBeingDragged.LevelItem);
             itemBeingDragged.Place();
         }
 

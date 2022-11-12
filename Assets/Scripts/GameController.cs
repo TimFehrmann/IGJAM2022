@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     private Income incomeController;
     [SerializeField]
     private PlacementSystem placementSystem;
+    [SerializeField]
+    private ProjectileController projectileController;
 
 
     private bool isPaused = true;
@@ -38,6 +40,7 @@ public class GameController : MonoBehaviour
 
     public void OnStartButtonPressed()
     {
+        projectileController.ResetProjectiles();
         enemyController.SpawnNewWave();
         IsPaused = false;
     }

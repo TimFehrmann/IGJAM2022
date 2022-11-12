@@ -3,68 +3,65 @@ using System.Linq;
 using Assets.Scripts.Utility;
 using UnityEngine;
 
-namespace ProjectileSystem
+public class Projectile : MonoBehaviour
 {
-    public class Projectile : MonoBehaviour
+    [Header("Local References")]
+    [SerializeField]
+    private SpriteRenderer projectileRenderer;
+    [SerializeField]
+    private ParticleSystem explosionParticle;
+
+    public Action<Projectile> OnDestruction;
+
+    private ProjectileSettings projectileSettings;
+    private Vector3 velocity;
+    private Rigidbody2D rigid2d;
+
+    private void Awake()
     {
-        [Header("Local References")] 
-        [SerializeField]
-        private SpriteRenderer projectileRenderer;
-        [SerializeField] 
-        private ParticleSystem explosionParticle;
+        rigid2d = transform.GetComponent<Rigidbody2D>();
+    }
 
-        public Action<Projectile> OnDestruction;
-        
-        private ProjectileSettings projectileSettings;
-        private Vector3 velocity;
-        private Rigidbody2D rigid2d;
+    public void Init(ProjectileSettings settings)
+    {
+        projectileSettings = settings;
+        projectileRenderer.color = projectileSettings.Color;
+        transform.localScale = new Vector3(projectileSettings.Size, projectileSettings.Size, projectileSettings.Size);
 
-        private void Awake()
+        velocity = transform.up;
+    }
+
+    public void UpdateMovement()
+    {
+        transform.LookAtDirection2D(velocity);
+        rigid2d.velocity = velocity * (projectileSettings.Speed * 100 * Time.deltaTime);
+    }
+
+    public void Destroy()
+    {
+        //explosionParticle.Play();
+
+        if (OnDestruction != null)
         {
-            rigid2d = transform.GetComponent<Rigidbody2D>();
+            OnDestruction(this);
         }
+    }
 
-        public void Init(ProjectileSettings settings)
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (projectileSettings.ReflectionLayer.Select(x => x.ToLayer()).Contains(other.gameObject.layer))
         {
-            projectileSettings = settings;
-            projectileRenderer.color = projectileSettings.Color;
-            transform.localScale =new Vector3(projectileSettings.Size, projectileSettings.Size, projectileSettings.Size);
-
-            velocity = transform.up;
-        }
-
-        public void UpdateMovement()
-        {
-            transform.LookAtDirection2D(velocity);
-            rigid2d.velocity = velocity * (projectileSettings.Speed * 100 * Time.deltaTime);
-        }
-
-        public void Destroy()
-        {
-            //explosionParticle.Play();
-
-            if (OnDestruction != null)
+            foreach (var contact in other.contacts)
             {
-                OnDestruction(this);
+                var qua = Quaternion.AngleAxis(180, contact.normal);
+
+                velocity = Quaternion.AngleAxis(180, contact.normal) * transform.up * -1;
             }
         }
-        
-        private void OnCollisionEnter2D(Collision2D other)
+        else
         {
-            if (projectileSettings.ReflectionLayer.Select(x=> x.ToLayer()).Contains(other.gameObject.layer))
-            {
-                foreach (var contact in other.contacts)
-                {
-                    var qua = Quaternion.AngleAxis(180, contact.normal);
-
-                    velocity = Quaternion.AngleAxis(180, contact.normal) * transform.up * -1;
-                }
-            }
-            else
-            {
-                //TODO DMG Hinzufuegen;
-                Destroy();
-            }
+            //TODO DMG Hinzufuegen;
+            Destroy();
         }
     }
 }

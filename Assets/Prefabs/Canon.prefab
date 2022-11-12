@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5347590755571394802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.86, z: 0}
+  m_LocalPosition: {x: 0, y: 0.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -147,7 +147,7 @@ Transform:
   - {fileID: 5693823124029302925}
   - {fileID: 5693823122846983424}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5693823123014994070
 MonoBehaviour:
@@ -164,7 +164,7 @@ MonoBehaviour:
   isActive: 1
   spawnInterval: 1
   projectileSettings:
-    Speed: 20
+    Speed: 1
     Damage: 1
     Size: 1
     Color: {r: 1, g: 1, b: 1, a: 1}
@@ -174,9 +174,7 @@ MonoBehaviour:
   projectileSpawnPosition: {fileID: 3420430322518229424}
   projectilePrefab: {fileID: 7969742706965477520, guid: 7d6f073ce9c796c4b8271b3d0ebf2d70, type: 3}
   tankBarrel: {fileID: 5693823124029302925}
-  targetPositions:
-  - {fileID: 0}
-  - {fileID: 0}
+  targetPositions: []
 --- !u!1 &5693823124029302924
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693823124029302924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: -1.37, z: 0}
+  m_LocalPosition: {x: 0, y: -0.202, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

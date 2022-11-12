@@ -1,18 +1,13 @@
 using UnityEngine;
-using TMPro;
 
-[RequireComponent(typeof(Income))]
 public class Shop : MonoBehaviour
 {
     [SerializeField] private Transform shopBorderLeft;
-    [SerializeField] private TextMeshProUGUI cashText;
-
-    // Cache
-    private Income income;
+    [SerializeField] private Income income;
 
     public bool IsInShopArea(Vector2 position)
     {
-        return position.x > shopBorderLeft.position.x;
+        return position.y < shopBorderLeft.position.y;
     }
 
     public void BuyItem(ShopItem shopItem)
@@ -20,13 +15,8 @@ public class Shop : MonoBehaviour
         income.Subtract(shopItem.Price);
     }
 
-    private void Awake()
+    public bool CheckCanBuy(ShopItem shopItem)
     {
-        income = GetComponent<Income>();    
-    }
-
-    private void Update()
-    {
-        cashText.text =  "$ " + income.Cash.ToString();
+        return shopItem.Price <= income.Cash;
     }
 }

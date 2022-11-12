@@ -12,7 +12,7 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     private Shop shop;
     private ShopItem shopItem;
 
-    private LevelItem itemBeingDragged;
+    private DraggedLevelItem itemBeingDragged;
 
     private void Awake()
     {
@@ -24,8 +24,8 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     public void OnBeginDrag(PointerEventData eventData)
     {
         // Create Duplicate to drag
-        LevelItem levelItem = Instantiate(shopItem.levelItem);
-        levelItem.SetPrice(shopItem.Price);
+        DraggedLevelItem levelItem = Instantiate(shopItem.levelItem);
+        levelItem.LevelItemPreview.SetPrice(shopItem.Price);
         itemBeingDragged = levelItem;
     }
 
@@ -57,7 +57,8 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         else
         {
             shop.BuyItem(shopItem);
-            itemBeingDragged.SetPriceEnabled(false);
+            itemBeingDragged.LevelItemPreview.SetPriceEnabled(false);
+            itemBeingDragged.Place();
         }
 
         itemBeingDragged = null;
@@ -80,11 +81,11 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         itemBeingDragged.transform.position = worldPosition;
 
         bool canBuy = shop.CheckCanBuy(shopItem);
-        itemBeingDragged.SetCanBuy(canBuy);
+        itemBeingDragged.LevelItemPreview.SetCanBuy(canBuy);
 
         // Display Delete Cross in Shop Area
         bool displayCross = !canBuy || isInShopArea;
-        itemBeingDragged.SetCrossEnabled(displayCross);
+        itemBeingDragged.LevelItemPreview.SetCrossEnabled(displayCross);
     }
 
     private Vector2 GetMouseWorldPosition() {

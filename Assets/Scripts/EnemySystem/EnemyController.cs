@@ -9,26 +9,39 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Enemy enemyPrefab;
 
+    [Header("Scene references")]
+    [SerializeField]
+    private Transform enemySpawn;
+
+    [Header("Settings")]
     [SerializeField]
     private float spawnInterval;
-
     [SerializeField]
     private int defaultWaveSize;
+    [Tooltip("Start movedirection of enemies, 1st enemy runs in [0] direction, 2nd in [1] and so on; cycles.")]
+    [SerializeField]
+    private DIRECTION[] spawnDirections;
+
+    private int currentSpawnDirectionIndex = 0;
 
     private ObjectPool<Enemy> enemyPool;
 
-    private List<Enemy> activeEnemies;
+    private List<Enemy> activeEnemies = new List<Enemy>();
 
 
-    private IEnumerator Start()
+    private void Start()
     {
-        for (int i = 0; i < defaultWaveSize; i++)
-        {
-            SpawnEnemy();
-            yield return new WaitForSeconds(spawnInterval);
-        }
+        enemyPool = new ObjectPool<Enemy>(6, enemyPrefab);
+
+        StartCoroutine(SpawnWave());
     }
 
+
+    //TODO: Remove and invoke OnUpdate in GameController (tbd)
+    private void Update()
+    {
+        OnUpdate();
+    }
 
     public void OnUpdate()
     {
@@ -38,8 +51,34 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private IEnumerator SpawnWave()
+    {
+        for (int i = 0; i < defaultWaveSize; i++)
+        {
+            SpawnEnemy();
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
     private void SpawnEnemy()
     {
+        Enemy enemy = enemyPool.GetObject();
+        enemy.transform.position = enemySpawn.position;
+        enemy.OnDestruction += DespawnEnemy;
 
+        DIRECTION spawnDirection = spawnDirections[currentSpawnDirectionIndex];
+        enemy.SetClockwiseDirection(spawnDirection);
+        enemy.SetMoveDirection(spawnDirection);
+        currentSpawnDirectionIndex = currentSpawnDirectionIndex + 1 >= spawnDirections.Length ? currentSpawnDirectionIndex = 0 : currentSpawnDirectionIndex + 1;
+
+        enemy.gameObject.SetActive(true);
+        activeEnemies.Add(enemy);
+    }
+
+    private void DespawnEnemy(Enemy enemyToDespawn)
+    {
+        enemyToDespawn.OnDestruction -= DespawnEnemy;
+        activeEnemies.Remove(enemyToDespawn);
+        enemyPool.ReturnToPool(enemyToDespawn);
     }
 }

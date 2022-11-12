@@ -41,6 +41,11 @@
 		- Are placed
 		- Do Stuff (Redirect, Attract)
 		- Despawn after X Seconds (Displayed on it)
+		- Targets to buy for tank to shoot at
+			- price based on active targets
+			
+			// timer
+			// placement system to notify when placed or destroyed
 - References
 	- Assets
 		- https://www.kenney.nl/assets/space-kit

@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IPathable
 {
+    public Action<Enemy> OnDestruction;
+
     [Header("Settings")]
     [SerializeField]
     private float speed;
@@ -14,9 +16,17 @@ public class Enemy : MonoBehaviour
     [Header("Local References")]
     [SerializeField]
     private SpriteRenderer enemyRenderer;
+    [SerializeField]
+    private EnemySpriteRotator spriteRotator;
 
-    public Action<Enemy> OnDestruction;
+    private Transform myTransform;
 
+    private Vector2 moveDirection;
+
+    private void Awake()
+    {
+        myTransform = GetComponent<Transform>();
+    }
 
     public void Initialize()
     {
@@ -25,14 +35,26 @@ public class Enemy : MonoBehaviour
 
     public void UpdateMovement()
     {
-
+        Vector2 frameMovement = moveDirection * speed * Time.deltaTime;
+        myTransform.Translate(frameMovement);
     }
 
     public void Destroy()
     {
-        if(OnDestruction != null)
+        if (OnDestruction != null)
         {
             OnDestruction(this);
         }
+    }
+
+    public void SetClockwiseDirection(DIRECTION direction)
+    {
+        spriteRotator.SetClockwiseDirection(direction);
+    }
+
+    public void SetMoveDirection(DIRECTION direction)
+    {
+        moveDirection = direction.ToVector2();
+        spriteRotator.SetSpriteRotation(direction);
     }
 }

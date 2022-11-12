@@ -323,7 +323,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268880766}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -663,6 +663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1330340312281465081}
   - component: {fileID: 8844865481426450253}
+  - component: {fileID: 8557931979296541319}
   m_Layer: 0
   m_Name: LevelItemCorner
   m_TagString: Untagged
@@ -702,6 +703,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToDespawn: 10
   timerText: {fileID: 1999233686}
+--- !u!114 &8557931979296541319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8975824023122480326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89ba76e64f45544ab7777bb73d7326a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCollider: {fileID: 2979820023358958707}
+  itemtransform: {fileID: 1330340312281465081}
+  inputConfig: {fileID: 11400000, guid: 962934f958eccc348ab87f6912b6d791, type: 2}
 --- !u!1 &9159139253343667881
 GameObject:
   m_ObjectHideFlags: 0

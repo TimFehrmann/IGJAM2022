@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -14,9 +15,21 @@ public class GameController : MonoBehaviour
     private PlacementSystem placementSystem;
     [SerializeField]
     private ProjectileController projectileController;
-
+    [SerializeField] 
+    private Canvas gameOverCanvas;
 
     private bool isPaused = true;
+
+    private void Awake()
+    {
+        projectileController.OnGameOver +=OnGameOver;
+    }
+
+    private void OnGameOver()
+    {
+        IsPaused = true;
+        gameOverCanvas.gameObject.SetActive(true);
+    }
 
     public bool IsPaused { 
         get => isPaused; 
@@ -48,5 +61,12 @@ public class GameController : MonoBehaviour
     public void OnTogglePause()
     {
         IsPaused = !IsPaused;
+    }
+
+    public void OnRestart()
+    {
+        //Eventuell noch auf richtigen restart umbauen
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

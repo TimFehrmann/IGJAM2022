@@ -1,32 +1,31 @@
+using System;
 using Assets.Scripts.Utility;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    [Header("Canon settings")]
-    [SerializeField]
+    public event Action OnGameOver;
+
+    [Header("Canon settings")] [SerializeField]
     private bool isActive;
 
-    [Header("Projectile settings")]
-    [SerializeField]
+    [Header("Projectile settings")] [SerializeField]
     private float spawnInterval;
-    [SerializeField]
-    private ProjectileSettings projectileSettings;
 
-    [Header("Local references")]
-    [SerializeField]
+    [SerializeField] private ProjectileSettings projectileSettings;
+
+    [Header("Local references")] [SerializeField]
     private Transform projectileSpawnPosition;
-    [SerializeField]
-    private Projectile projectilePrefab;
-    [SerializeField]
-    private Transform tankBarrel;
-    [SerializeField]
-    private List<Transform> targetPositions;
 
-    [Header("Scene references")]
-    [SerializeField]
+    [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private Transform tankBarrel;
+    [SerializeField] private List<Transform> targetPositions;
+
+    [Header("Scene references")] [SerializeField]
     private GameController gameController;
 
     private int currentTargetIndex;
@@ -40,7 +39,7 @@ public class ProjectileController : MonoBehaviour
         projectilePool = new ObjectPool<Projectile>(20, projectilePrefab);
         activeProjectiles = new List<Projectile>();
         currentTargetIndex = -1;
-        gameController.OnPauseStateChanged += OnPauseStateChanged; 
+        gameController.OnPauseStateChanged += OnPauseStateChanged;
     }
 
     private void FixedUpdate()
@@ -79,6 +78,8 @@ public class ProjectileController : MonoBehaviour
 
     private void SetNextTarget()
     {
+        targetPositions.RemoveAll(target => target == null);
+        
         if (targetPositions.Count == 0)
         {
             currentTargetIndex = -1;
@@ -127,6 +128,23 @@ public class ProjectileController : MonoBehaviour
         projectilePool.ReturnToPool(projectile);
 
         projectile.OnDestruction -= OnProjectileDestruction;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Finish")
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        if (OnGameOver != null)
+        {
+            OnGameOver();
+            ResetProjectiles();
+        }
     }
 
     private void OnPauseStateChanged(bool isPaused)

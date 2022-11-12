@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Assets.Scripts.Utility;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -53,13 +54,18 @@ public class Projectile : MonoBehaviour
         {
             foreach (var contact in other.contacts)
             {
-                var qua = Quaternion.AngleAxis(180, contact.normal);
-
                 velocity = Quaternion.AngleAxis(180, contact.normal) * transform.up * -1;
             }
         }
         else
         {
+            var enemy= other.transform.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.Destroy();
+            }
+            
+            
             //TODO DMG Hinzufuegen;
             Destroy();
         }

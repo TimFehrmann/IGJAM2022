@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 5415304086044993695}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5415304084545247554
 MonoBehaviour:
@@ -49,6 +49,8 @@ MonoBehaviour:
   enemySpawn: {fileID: 5415304086044993695}
   spawnInterval: 0.8
   defaultWaveSize: 6
+  newWaveStartTrigger: 0.3
+  sizeIncreasePerWave: 2
   spawnDirections: 0000000001000000
 --- !u!1 &5415304086044993694
 GameObject:

@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5693823122846983424}
   - component: {fileID: 5693823122846983425}
+  - component: {fileID: 1649292888}
   m_Layer: 0
   m_Name: Tank_Body
   m_TagString: Untagged
@@ -115,6 +116,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1649292888
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693823122846983439}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.16, y: 0.648}
+    newSize: {x: 5.8, y: 3.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.51600003, y: 0.042000003}
+      - {x: 0.54800004, y: 0.074}
+      - {x: 0.58000004, y: 0.136}
+      - {x: 0.58000004, y: 0.49600002}
+      - {x: 0.57000005, y: 0.53400004}
+      - {x: 0.55200005, y: 0.568}
+      - {x: 0.50600004, y: 0.614}
+      - {x: 0.48400003, y: 0.632}
+      - {x: 0.43800002, y: 0.648}
+      - {x: -0.43400002, y: 0.648}
+      - {x: -0.48200002, y: 0.63000005}
+      - {x: -0.51600003, y: 0.60400003}
+      - {x: -0.546, y: 0.574}
+      - {x: -0.57000005, y: 0.53400004}
+      - {x: -0.58000004, y: 0.50200003}
+      - {x: -0.58000004, y: 0.15400001}
+      - {x: -0.572, y: 0.11400001}
+      - {x: -0.53800005, y: 0.062000003}
+      - {x: -0.50600004, y: 0.034}
+      - {x: -0.48400003, y: 0.016}
+      - {x: -0.43800002, y: 0}
+      - {x: 0.42600003, y: 0}
+      - {x: 0.44200003, y: 0.004}
+      - {x: 0.47000003, y: 0.012}
+  m_UseDelaunayMesh: 0
 --- !u!1 &5693823123014994069
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5693823123014994071}
   - component: {fileID: 5693823123014994070}
+  - component: {fileID: 2035891030}
   m_Layer: 0
   m_Name: Canon
   m_TagString: Untagged
@@ -161,10 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68cbb220aab4c4c88540e9eddd69caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
+  isActive: 0
   spawnInterval: 1
   projectileSettings:
-    Speed: 1
+    Speed: 3
     Damage: 1
     Size: 1
     Color: {r: 1, g: 1, b: 1, a: 1}
@@ -175,6 +227,28 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7969742706965477520, guid: 7d6f073ce9c796c4b8271b3d0ebf2d70, type: 3}
   tankBarrel: {fileID: 5693823124029302925}
   targetPositions: []
+  gameController: {fileID: 0}
+--- !u!50 &2035891030
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693823123014994069}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 0.72502005
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5693823124029302924
 GameObject:
   m_ObjectHideFlags: 0

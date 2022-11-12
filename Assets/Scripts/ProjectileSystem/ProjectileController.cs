@@ -111,7 +111,7 @@ namespace ProjectileSystem
         private void OnProjectileDestruction(Projectile projectile)
         {
             activeProjectiles.Remove(projectile);
-            projectilePool.AddToPool(projectile);
+            projectilePool.ReturnToPool(projectile);
 
             projectile.OnDestruction -= OnProjectileDestruction;
         }

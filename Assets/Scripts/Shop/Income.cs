@@ -10,6 +10,7 @@ public class Income : MonoBehaviour
     [SerializeField] private int incomePerInterval = 50;
 
     [SerializeField] private TextMeshProUGUI cashText;
+    [SerializeField] private IncomeFeedback incomeFeedback;
 
     // Cache
     private int cash;
@@ -22,7 +23,16 @@ public class Income : MonoBehaviour
     {
         Cash -= amount;
         UpdateCashText();
+        incomeFeedback.DisplayIncomeUpdate(-amount);
     }
+
+    public void Add(int amount)
+    {
+        Cash += amount;
+        UpdateCashText();
+        incomeFeedback.DisplayIncomeUpdate(amount);
+    }
+
 
     private void Awake()
     {
@@ -47,8 +57,7 @@ public class Income : MonoBehaviour
 
     private void AddIncomePerInterval()
     {
-        cash += incomePerInterval;
-        UpdateCashText();
+        Add(incomePerInterval);
     }
 
     private void UpdateCashText()

@@ -130,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3716999370550615608, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: defaultPrice
-      value: 100
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3716999370550615608, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: DraggedLevelItem
@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 9159139253343667880, guid: fec4053921136c44187d41d4ff79c04f, type: 3}
     - target: {fileID: 3716999370550615608, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: priceIncreasePerPlacedItem
-      value: 40
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1074195636434788384, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}

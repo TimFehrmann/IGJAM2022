@@ -72,9 +72,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8ad471c7eccf148bff8c3ff7d9220e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCash: 1000
+  startCash: 5
   incomeIntervalInSeconds: 1
-  incomePerInterval: 20
+  incomePerInterval: 1
+  incomePerKill: 1
   cashText: {fileID: 6874813815321532304}
   incomeFeedback: {fileID: 3354101866675997578}
 --- !u!1 &4466760221256181516

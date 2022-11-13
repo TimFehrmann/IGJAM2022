@@ -13,6 +13,12 @@ public class FloorPathObject : MonoBehaviour
 
         objectOnPath.AddCollidingFloor(this);
 
+        bool isFirstCollision = objectOnPath.IsFirstCollision();
+        if (isFirstCollision)
+        {
+            return;
+        }
+
         bool isClockwiseMovement = objectOnPath.GetIsClockwiseMovement();
         DIRECTION currentObjectDirection = objectOnPath.GetDirection();
 

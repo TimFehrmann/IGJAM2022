@@ -3,9 +3,22 @@ using TMPro;
 
 public class ShopItem : MonoBehaviour
 {
-    public Vector2 ShopScale { get => scale; }
+    [SerializeField]
+    private int defaultPrice;
+    [SerializeField]
+    private int priceIncreasePerPlacedItem;
 
-    public int Price;
+    private int actualPrice;
+
+    public Vector2 ShopScale { get => scale; }
+    public int Price {
+        get => actualPrice;
+        set {
+            actualPrice = value;
+            OnPriceChanged();
+        } 
+    }
+
     public DraggedLevelItem DraggedLevelItem;
 
     [SerializeField] private float scaleValue = 1;
@@ -16,7 +29,17 @@ public class ShopItem : MonoBehaviour
 
     private void Awake()
     {
-        costText.text = Price.ToString();
+        Price = defaultPrice;
         scale = new Vector2(scaleValue, scaleValue);
+    }
+
+    private void OnPriceChanged()
+    {
+        costText.text = Price.ToString();
+    }
+
+    public void UpdatePrice(int currentSpawnedAmount)
+    {
+        Price = defaultPrice + currentSpawnedAmount * priceIncreasePerPlacedItem;
     }
 }

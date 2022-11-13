@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2151865267602305888
+--- !u!1001 &1049719877281850890
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -32,13 +32,25 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1074195635082596620, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074195635082596620, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -41
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074195635082596621, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
+      propertyPath: m_text
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 1074195636400928997, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: bde430a0abe224443b344bee60c44506, type: 3}
+      objectReference: {fileID: 21300000, guid: 0666991da1fc26f4da48696b7dbbb0ee, type: 3}
     - target: {fileID: 1074195636434788414, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: m_Name
-      value: ShopItemBlock
+      value: ShopItemDuplicatorx3
       objectReference: {fileID: 0}
     - target: {fileID: 1074195636434788415, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: m_Pivot.x
@@ -77,6 +89,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1074195636434788415, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074195636434788415, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074195636434788415, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074195636434788415, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -94,15 +118,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1074195636434788415, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1074195636434788415, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1074195636434788415, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1074195636434788415, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -126,23 +150,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752301284228665129, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: assignedType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3716999370550615608, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: Price
-      value: 150
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3716999370550615608, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: defaultPrice
-      value: 8
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3716999370550615608, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: DraggedLevelItem
       value: 
-      objectReference: {fileID: 994380791809194452, guid: 1957b143298cff04a9945ad08bc759c4, type: 3}
+      objectReference: {fileID: 4513637403973600617, guid: 2409c26975116f44486970535b0081d8, type: 3}
     - target: {fileID: 3716999370550615608, guid: 58a902b93d9337c4db7513f3cc179eff, type: 3}
       propertyPath: priceIncreasePerPlacedItem
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

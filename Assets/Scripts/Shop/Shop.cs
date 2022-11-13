@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class Shop : MonoBehaviour
 {
@@ -6,10 +7,14 @@ public class Shop : MonoBehaviour
 
     [SerializeField] private Transform shopBorderLeft;
     [SerializeField] private Income income;
-
     // Cached
     private PlacementSystem placementSystem;
 
+
+    private void Awake()
+    {
+        PlacementSystem = FindObjectOfType<PlacementSystem>();
+    }
 
     public bool IsInShopArea(Vector2 position)
     {
@@ -24,10 +29,5 @@ public class Shop : MonoBehaviour
     public bool CheckCanBuy(ShopItem shopItem)
     {
         return shopItem.Price <= income.Cash;
-    }
-
-    private void Awake()
-    {
-        PlacementSystem = FindObjectOfType<PlacementSystem>();
     }
 }

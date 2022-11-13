@@ -34,12 +34,14 @@ public class EnemyController : MonoBehaviour
     private ObjectPool<Enemy> enemyPool;
 
     private List<Enemy> activeEnemies = new List<Enemy>();
+    private Income income;
 
 
     private void Start()
     {
         enemyPool = new ObjectPool<Enemy>(6, enemyPrefab);
         currentWaveSize = defaultWaveSize;
+        income = FindObjectOfType<Income>();
     }
 
     public void OnUpdate()
@@ -85,6 +87,10 @@ public class EnemyController : MonoBehaviour
         enemyToDespawn.OnDestruction -= DespawnEnemy;
         activeEnemies.Remove(enemyToDespawn);
         enemyPool.ReturnToPool(enemyToDespawn);
+
+        // grant money for killed enemies
+        income.KilledEnemy();
+
         if (activeEnemies.Count <= currentWaveSize * newWaveStartTrigger)
         {
             currentWaveSize += sizeIncreasePerWave;

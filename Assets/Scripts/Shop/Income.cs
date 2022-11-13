@@ -8,6 +8,7 @@ public class Income : MonoBehaviour
     [SerializeField] private int startCash = 200;
     [SerializeField] private int incomeIntervalInSeconds = 5;
     [SerializeField] private int incomePerInterval = 50;
+    [SerializeField] private int incomePerKill = 10;
 
     [SerializeField] private TextMeshProUGUI cashText;
     [SerializeField] private IncomeFeedback incomeFeedback;
@@ -33,6 +34,10 @@ public class Income : MonoBehaviour
         incomeFeedback.DisplayIncomeUpdate(amount);
     }
 
+    public void KilledEnemy()
+    {
+        Add(incomePerKill);
+    }
 
     private void Awake()
     {

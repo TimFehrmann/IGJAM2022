@@ -19,6 +19,14 @@ public class OnExplodePrefab : MonoBehaviour
             Debug.LogError($"OnExplosionPrefab \"{gameObject.name}\" audioSource and animator null");
         }
     }
+    
+    public void Init()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("restart");
+        }
+    }
 
     public void Play()
     {
@@ -43,4 +51,6 @@ public class OnExplodePrefab : MonoBehaviour
             OnDestroy(this);
         }
     }
+
+   
 }

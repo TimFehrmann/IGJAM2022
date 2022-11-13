@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class ExplodableObject : MonoBehaviour
 {
-     public OnExplodePrefab ExplodePrefab;
-    
     private void Awake()
     {
         var exploadable = transform.GetComponent<IExplodable>();

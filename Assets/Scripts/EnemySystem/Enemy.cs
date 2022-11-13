@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour, IPathable
     {
         if (OnDestruction != null)
         {
-            pathObjectToIgnoreOnce = null;
+            hasCollidedYet = false;
             OnDestruction(this);
         }
     }

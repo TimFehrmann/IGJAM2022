@@ -15,8 +15,10 @@ public class Projectile : MonoBehaviour
     public Action<Projectile> OnDestruction;
 
     private ProjectileSettings projectileSettings;
-    private Vector3 velocity;
+    private Vector3 projectileVelocity;
     private Rigidbody2D rigid2d;
+
+    public Vector3 ProjectileVelocity { get => projectileVelocity; private set => projectileVelocity = value; }
 
     private void Awake()
     {
@@ -29,13 +31,13 @@ public class Projectile : MonoBehaviour
         projectileRenderer.color = projectileSettings.Color;
         transform.localScale = new Vector3(projectileSettings.Size, projectileSettings.Size, projectileSettings.Size);
 
-        velocity = transform.up;
+        ProjectileVelocity = transform.up;
     }
 
     public void UpdateMovement()
     {
-        transform.LookAtDirection2D(velocity);
-        rigid2d.velocity = velocity * (projectileSettings.Speed * 100 * Time.deltaTime);
+        transform.LookAtDirection2D(ProjectileVelocity);
+        rigid2d.velocity = ProjectileVelocity * (projectileSettings.Speed * 100 * Time.deltaTime);
     }
 
     public void Destroy()
@@ -48,13 +50,26 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public void CopyValuesFromOtherProjectile(Projectile otherProjectile)
+    {
+        projectileVelocity = otherProjectile.ProjectileVelocity;
+        transform.position = otherProjectile.transform.position;
+        transform.rotation = otherProjectile.transform.rotation;
+        transform.localScale = otherProjectile.transform.localScale;
+    }
+
+    public void Redirect(int zAngle)
+    {
+        projectileVelocity = Quaternion.Euler(0, 0, zAngle) * projectileVelocity;
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (projectileSettings.ReflectionLayer.Select(x => x.ToLayer()).Contains(other.gameObject.layer))
         {
             foreach (var contact in other.contacts)
             {
-                velocity = Quaternion.AngleAxis(180, contact.normal) * transform.up * -1;
+                ProjectileVelocity = Quaternion.AngleAxis(180, contact.normal) * transform.up * -1;
             }
         }
         else

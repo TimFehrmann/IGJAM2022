@@ -13,6 +13,7 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     private ShopItem shopItem;
 
     private DraggedLevelItem itemBeingDragged;
+    private float zIndex = 0;
 
     private void Awake()
     {
@@ -27,6 +28,9 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         DraggedLevelItem levelItem = Instantiate(shopItem.DraggedLevelItem);
         levelItem.LevelItemPreview.SetPrice(shopItem.Price);
         itemBeingDragged = levelItem;
+
+        zIndex += 0.01f;
+        itemBeingDragged.transform.position += new Vector3(0,0,zIndex);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -49,7 +53,9 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         // Check can buy
         bool cantAfford = !shop.CheckCanBuy(shopItem);
 
-        if (isInShopArea || cantAfford)
+        bool inValidPlacementDueToIntersection = !itemBeingDragged.LevelItemPreview.IsValidPlacement();
+
+        if (isInShopArea || cantAfford || inValidPlacementDueToIntersection)
         {
 
             Destroy(itemBeingDragged.gameObject);
@@ -84,8 +90,9 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         bool canBuy = shop.CheckCanBuy(shopItem);
         itemBeingDragged.LevelItemPreview.SetCanBuy(canBuy);
 
+        bool inValidPlacementDueToIntersection = !itemBeingDragged.LevelItemPreview.IsValidPlacement();
         // Display Delete Cross in Shop Area
-        bool displayCross = !canBuy || isInShopArea;
+        bool displayCross = !canBuy || isInShopArea || inValidPlacementDueToIntersection;
         itemBeingDragged.LevelItemPreview.SetCrossEnabled(displayCross);
     }
 

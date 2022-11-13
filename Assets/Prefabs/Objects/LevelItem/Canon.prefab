@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 5693823122846983424}
   - component: {fileID: 5693823122846983425}
   - component: {fileID: 1649292888}
+  - component: {fileID: 5799338108633702396}
   m_Layer: 0
   m_Name: Tank_Body
   m_TagString: Untagged
@@ -166,6 +167,56 @@ PolygonCollider2D:
       - {x: 0.44200003, y: 0.004}
       - {x: 0.47000003, y: 0.012}
   m_UseDelaunayMesh: 0
+--- !u!60 &5799338108633702396
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693823122846983439}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.16, y: 0.648}
+    newSize: {x: 5.8, y: 3.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.51600003, y: 0.042000003}
+      - {x: 0.54800004, y: 0.074}
+      - {x: 0.58000004, y: 0.136}
+      - {x: 0.58000004, y: 0.49600002}
+      - {x: 0.57000005, y: 0.53400004}
+      - {x: 0.55200005, y: 0.568}
+      - {x: 0.50600004, y: 0.614}
+      - {x: 0.48400003, y: 0.632}
+      - {x: 0.43800002, y: 0.648}
+      - {x: -0.43400002, y: 0.648}
+      - {x: -0.48200002, y: 0.63000005}
+      - {x: -0.51600003, y: 0.60400003}
+      - {x: -0.546, y: 0.574}
+      - {x: -0.57000005, y: 0.53400004}
+      - {x: -0.58000004, y: 0.50200003}
+      - {x: -0.58000004, y: 0.15400001}
+      - {x: -0.572, y: 0.11400001}
+      - {x: -0.53800005, y: 0.062000003}
+      - {x: -0.50600004, y: 0.034}
+      - {x: -0.48400003, y: 0.016}
+      - {x: -0.43800002, y: 0}
+      - {x: 0.42600003, y: 0}
+      - {x: 0.44200003, y: 0.004}
+      - {x: 0.47000003, y: 0.012}
+  m_UseDelaunayMesh: 0
 --- !u!1 &5693823123014994069
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +250,7 @@ Transform:
   - {fileID: 5693823124029302925}
   - {fileID: 5693823122846983424}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5693823123014994070
 MonoBehaviour:

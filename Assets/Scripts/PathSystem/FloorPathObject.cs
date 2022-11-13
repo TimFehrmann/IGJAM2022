@@ -16,11 +16,9 @@ public class FloorPathObject : MonoBehaviour
         bool isFirstCollision = objectOnPath.IsFirstCollision();
         if (isFirstCollision)
         {
-            Debug.Log("OnTriggerEnter2D of " + name + " - isFirstCollision: " + isFirstCollision);
             return;
         }
 
-        Debug.Log("OnTriggerEnter2D of " + name + " - more collisions");
 
         bool isClockwiseMovement = objectOnPath.GetIsClockwiseMovement();
         DIRECTION currentObjectDirection = objectOnPath.GetDirection();

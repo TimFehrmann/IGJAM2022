@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeToDespawn: 30
+  itemType: 4
   timerText: {fileID: 4735646961335034199}
 --- !u!114 &4735646961111463332
 MonoBehaviour:

@@ -23,7 +23,6 @@ public class LevelItem : MonoBehaviour
     {
         placeableBehaviours = GetComponentsInChildren<IPlaceableBehaviour>();
         placementBlocker = GetComponentInChildren<PlacementBlocker>();
-        Debug.Log(placeableBehaviours);
     }
 
     public void Place()

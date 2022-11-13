@@ -1376,7 +1376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693823123014994071, guid: b9bf9deb5df018a48af433ca3d4a1021, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.4
+      value: 8.3
       objectReference: {fileID: 0}
     - target: {fileID: 5693823123014994071, guid: b9bf9deb5df018a48af433ca3d4a1021, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1425,10 +1425,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5415304084545247554, guid: b656800bf206ab14a80bdd68e5838d52, type: 3}
-      propertyPath: defaultWaveSize
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5415304084545247555, guid: b656800bf206ab14a80bdd68e5838d52, type: 3}
       propertyPath: m_RootOrder
       value: 5

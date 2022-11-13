@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8f0b64fea502441aa2b9893a1a6e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToDespawn: 15
+  TimeToDespawn: 22
   itemType: 1
   timerText: {fileID: 8275096653326261738}
 --- !u!61 &5291453925808453464

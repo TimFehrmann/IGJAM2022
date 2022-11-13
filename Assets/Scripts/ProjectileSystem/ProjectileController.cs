@@ -111,7 +111,7 @@ public class ProjectileController : MonoBehaviour
         }
     }
 
-    private void SpawnProjectile()
+    public Projectile SpawnProjectile()
     {
         var projectile = projectilePool.GetObject();
         projectile.transform.SetPositionAndRotation(projectileSpawnPosition.position,
@@ -121,6 +121,8 @@ public class ProjectileController : MonoBehaviour
         activeProjectiles.Add(projectile);
 
         projectile.OnDestruction += OnProjectileDestruction;
+
+        return projectile;
     }
 
     private void OnProjectileDestruction(Projectile projectile)

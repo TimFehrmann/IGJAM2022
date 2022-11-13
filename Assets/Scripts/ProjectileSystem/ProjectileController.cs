@@ -40,6 +40,7 @@ public class ProjectileController : MonoBehaviour
         activeProjectiles = new List<Projectile>();
         currentTargetIndex = -1;
         gameController.OnPauseStateChanged += OnPauseStateChanged;
+        MessageBus.OnObjectCreated += OnTargetCreated;
     }
 
     private void FixedUpdate()
@@ -150,5 +151,21 @@ public class ProjectileController : MonoBehaviour
     private void OnPauseStateChanged(bool isPaused)
     {
         isActive = !isPaused;
+    }
+
+    private void OnTargetCreated(MonoBehaviour obj)
+    {
+        TargetBehaviour targetBehaviour = obj.gameObject.GetComponent<TargetBehaviour>();
+        if (targetBehaviour)
+        {
+            targetPositions.Add(targetBehaviour.transform);
+            targetBehaviour.OnDestroy += OnTargetDestroyed;
+        }
+    }
+
+    private void OnTargetDestroyed(TargetBehaviour obj)
+    {
+        targetPositions.Remove(obj.transform);
+        obj.OnDestroy -= OnTargetDestroyed;
     }
 }

@@ -13,7 +13,7 @@ public class IncomeFeedback : MonoBehaviour
     private void Awake()
     {
         config = FindObjectOfType<Config>();
-        feedbackTextObjectPool = new ObjectPool<FeedbackText>(10, feedbackTextPrefab);
+        feedbackTextObjectPool = new ObjectPool<FeedbackText>(2, feedbackTextPrefab);
     }
 
     public void DisplayIncomeUpdate(int amount)

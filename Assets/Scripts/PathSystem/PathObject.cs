@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PathObject : MonoBehaviour
+[RequireComponent(typeof(Block))]
+[RequireComponent(typeof(Collider2D))]
+public class PathObject : MonoBehaviour, IPlaceableBehaviour
 {
     // Cached
     private Transform center;
+    private Collider2D _collider2D;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -55,9 +58,9 @@ public class PathObject : MonoBehaviour
             return;
         }
 
-
-        bool stillExists = objectOnPath.RemoveCollidingPathObject(this);
-        if (!stillExists)
+        // Destroy target with this if this is being destroyed
+        objectOnPath.RemoveCollidingPathObject(this, beingDestroyed);
+        if (beingDestroyed)
         {
             return;
         }
@@ -97,7 +100,9 @@ public class PathObject : MonoBehaviour
 
     private void Awake()
     {
-        center = transform.parent.GetComponent<Block>().Center;
+        center = GetComponent<Block>().Center;
+        _collider2D = GetComponent<Collider2D>();
+        _collider2D.enabled = false;
     }
 
     private bool ObjectOnPathIsFacingWall(IPathable pathable)
@@ -129,4 +134,26 @@ public class PathObject : MonoBehaviour
         return false;
     }
 
+    private bool beingDestroyed = false;
+    public void Place()
+    {
+        beingDestroyed = false;
+        _collider2D.enabled = true;
+    }
+
+    public void Despawn()
+    {
+        beingDestroyed = true;
+        _collider2D.enabled = false;
+    }
+
+    public void OnPlacementUpdate()
+    {
+        
+    }
+
+    public bool IsPlaced()
+    {
+        return _collider2D.enabled;
+    }
 }

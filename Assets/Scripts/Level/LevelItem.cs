@@ -13,25 +13,53 @@ public class LevelItem : MonoBehaviour
 
     [SerializeField] private TextMeshPro timerText;
 
+    private IPlaceableBehaviour[] placeableBehaviours;
+
     // Cached
     private float timeRemainingInSeconds;
 
+    private void Awake()
+    {
+        placeableBehaviours = GetComponentsInChildren<IPlaceableBehaviour>();
+        Debug.Log(placeableBehaviours);
+    }
 
     public void Place()
     {
         timeRemainingInSeconds = TimeToDespawn;
         UpdateTimerText();
+        foreach (var behaviour in placeableBehaviours)
+        {
+            behaviour.Place();
+        }
     }
 
     public void Despawn()
     {
+        foreach (var behaviour in placeableBehaviours)
+        {
+            behaviour.Despawn();
+        }
         onDestruction(this);
         Destroy(gameObject);
     }
 
     public void SubtractTime(float deltaTime)
     {
-        timeRemainingInSeconds -= deltaTime;
+        bool readyForCD = true;
+        foreach (var behaviour in placeableBehaviours)
+        {
+            behaviour.OnPlacementUpdate();
+            if(!behaviour.IsPlaced())
+            {
+                readyForCD = false;
+            }
+        }
+
+        if(readyForCD)
+        {
+            timeRemainingInSeconds -= deltaTime;
+        }
 
         bool outOfTime = timeRemainingInSeconds <= 0;
         if (outOfTime)

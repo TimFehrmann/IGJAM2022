@@ -6,4 +6,9 @@ public class MouseInputProcessor : IInputProcessor
     {
         return Input.mousePosition;
     }
+
+    public bool IsPressed()
+    {
+        return Input.GetMouseButton(0);
+    }
 }

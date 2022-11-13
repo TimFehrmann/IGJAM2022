@@ -30,7 +30,7 @@ public class PlacementSystem : MonoBehaviour
         levelItemsToRemove = new List<LevelItem>();
     }
 
-    private void Update()
+    public void OnUpdate()
     {
         // Remove destroyed LevelItems
         foreach (LevelItem levelItem in levelItemsToRemove)

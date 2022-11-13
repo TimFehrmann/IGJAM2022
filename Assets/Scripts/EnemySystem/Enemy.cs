@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IPathable
 {
-    public Action<Enemy> OnDestruction;
+    public event Action<Enemy> OnDestruction;
 
     [Header("Settings")]
     [SerializeField]
@@ -57,16 +57,28 @@ public class Enemy : MonoBehaviour, IPathable
         return direction;
     }
 
+
+    private bool hasCollidedYet = false;
+    public bool IsFirstCollision()
+    {
+        if (hasCollidedYet)
+        {
+            return false;
+        }
+
+        hasCollidedYet = true;
+        return true;
+    }
+
     public void AddCollidingFloor(FloorPathObject floorPath)
     {
         collidingFloorPathObjects.Add(floorPath);
     }
 
-    public bool RemoveCollidingFloor(FloorPathObject floorPath)
+    public void RemoveCollidingFloor(FloorPathObject floorPath)
     {
         collidingFloorPathObjects.Remove(floorPath);
 
-        return IfNotCollidingDestroy();
     }
 
     public bool IsCollidingWithFloor()
@@ -79,14 +91,16 @@ public class Enemy : MonoBehaviour, IPathable
         collidingPathObjects.Add(pathObject);
     }
 
-    public bool RemoveCollidingPathObject(PathObject pathObject)
+    public void RemoveCollidingPathObject(PathObject pathObject, bool pathBeingDestroyed)
     {
         collidingPathObjects.Remove(pathObject);
-
-        return IfNotCollidingDestroy();
+        if (pathBeingDestroyed)
+        {
+            Destroy();
+        }
     }
 
-    private bool IfNotCollidingDestroy()
+    public bool IfNotCollidingDestroy()
     {
         bool isColliding = IsCollidingWithFloor() || IsCollidingWithPathObject();
         if (!isColliding)

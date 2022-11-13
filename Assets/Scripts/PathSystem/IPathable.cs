@@ -8,14 +8,16 @@ public interface IPathable
     DIRECTION GetDirection();
 
     void AddCollidingFloor(FloorPathObject floorPath);
-    bool RemoveCollidingFloor(FloorPathObject floorPath);
+    void RemoveCollidingFloor(FloorPathObject floorPath);
     bool IsCollidingWithFloor();
 
     public List<Transform> GetFrontTransforms();
 
+    bool IsFirstCollision();
     void AddCollidingPathObject(PathObject pathObject);
-    bool RemoveCollidingPathObject(PathObject pathObject);
+    void RemoveCollidingPathObject(PathObject pathObject, bool pathBeingDestroyed);
     bool IsCollidingWithPathObject();
     void IgnoreNextTriggerEnterOfGivenPathObject(PathObject pathObject);
     bool CheckIgnoreFloorCollisionOnce(PathObject pathObject);
+    bool IfNotCollidingDestroy();
 }

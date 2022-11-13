@@ -13,6 +13,15 @@ public class FloorPathObject : MonoBehaviour
 
         objectOnPath.AddCollidingFloor(this);
 
+        bool isFirstCollision = objectOnPath.IsFirstCollision();
+        if (isFirstCollision)
+        {
+            Debug.Log("OnTriggerEnter2D of " + name + " - isFirstCollision: " + isFirstCollision);
+            return;
+        }
+
+        Debug.Log("OnTriggerEnter2D of " + name + " - more collisions");
+
         bool isClockwiseMovement = objectOnPath.GetIsClockwiseMovement();
         DIRECTION currentObjectDirection = objectOnPath.GetDirection();
 
@@ -33,10 +42,6 @@ public class FloorPathObject : MonoBehaviour
             return;
         }
 
-        bool stillExists = objectOnPath.RemoveCollidingFloor(this);
-        if (!stillExists)
-        {
-            return;
-        }
+         objectOnPath.RemoveCollidingFloor(this);
     }
 }

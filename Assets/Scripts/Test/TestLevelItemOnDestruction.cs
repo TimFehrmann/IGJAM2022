@@ -13,6 +13,6 @@ public class TestLevelItemOnDestruction : MonoBehaviour
 
     private void LevelItemOnDestruction(LevelItem levelItem, int amount)
     {
-        Debug.Log("Event: LevelItemOnDestruction - " + levelItem.name);
+     //   Debug.Log("Event: LevelItemOnDestruction - " + levelItem.name);
     }
 }

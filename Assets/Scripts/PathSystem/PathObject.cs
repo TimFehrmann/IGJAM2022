@@ -92,7 +92,6 @@ public class PathObject : MonoBehaviour, IPlaceableBehaviour
 
         Vector2 dirTowardsCenter = center.position - collision.transform.position;
         Vector2 offset = 0.1f * dirTowardsCenter.normalized;
-        Debug.Log("PathObject offset: " + offset);
 
         objectOnPath.IgnoreNextTriggerEnterOfGivenPathObject(this);
         collision.transform.Translate(offset);

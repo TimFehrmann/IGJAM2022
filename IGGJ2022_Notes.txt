@@ -44,8 +44,11 @@
 		- Targets to buy for tank to shoot at
 			- price based on active targets
 			
-			// timer
 			// placement system to notify when placed or destroyed
+			// on destroy of tileBlock, remove collider from enemy
+			// if enemy is not connected to floor or tile, destroy
+			// add do not place on enemies, 
+			//disable levelitem until placed
 - References
 	- Assets
 		- https://www.kenney.nl/assets/space-kit

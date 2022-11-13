@@ -4,12 +4,15 @@ using TMPro;
 
 public class LevelItem : MonoBehaviour
 {
-
     public event Action<LevelItem> onDestruction;
 
     public int TimeToDespawn = 10;
 
     public float TimeRemaining { get => timeRemainingInSeconds; private set => timeRemainingInSeconds = value; }
+    public ITEMTYPE ItemType { get => itemType; }
+
+    [SerializeField]
+    private ITEMTYPE itemType;
 
     [SerializeField] private TextMeshPro timerText;
 
@@ -36,7 +39,7 @@ public class LevelItem : MonoBehaviour
         }
 
         // Enable Placement Blockers
-        if(placementBlocker != null)
+        if (placementBlocker != null)
         {
             placementBlocker.Activate();
         }
@@ -66,13 +69,13 @@ public class LevelItem : MonoBehaviour
         foreach (var behaviour in placeableBehaviours)
         {
             behaviour.OnPlacementUpdate();
-            if(!behaviour.IsPlaced())
+            if (!behaviour.IsPlaced())
             {
                 readyForCD = false;
             }
         }
 
-        if(readyForCD)
+        if (readyForCD)
         {
             timeRemainingInSeconds -= deltaTime;
         }

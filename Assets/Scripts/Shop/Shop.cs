@@ -11,6 +11,11 @@ public class Shop : MonoBehaviour
     private PlacementSystem placementSystem;
 
 
+    private void Awake()
+    {
+        PlacementSystem = FindObjectOfType<PlacementSystem>();
+    }
+
     public bool IsInShopArea(Vector2 position)
     {
         return position.y < shopBorderLeft.position.y;
@@ -24,10 +29,5 @@ public class Shop : MonoBehaviour
     public bool CheckCanBuy(ShopItem shopItem)
     {
         return shopItem.Price <= income.Cash;
-    }
-
-    private void Awake()
-    {
-        PlacementSystem = FindObjectOfType<PlacementSystem>();
     }
 }

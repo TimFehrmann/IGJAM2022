@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlacementSystem : MonoBehaviour
 {
-    public Action<LevelItem> OnDestruction;
+    public event Action<LevelItem, int> OnDestruction;
+    public event Action<LevelItem, int> OnItemPlaced;
 
     // Cached
     private List<LevelItem> levelItems;
@@ -15,13 +17,23 @@ public class PlacementSystem : MonoBehaviour
         levelItems.Add(levelItem);
         levelItem.Place();
         levelItem.onDestruction += DeregisterLevelItem;
+
+        int sameItemsCount = levelItems.Count(item => item.ItemType == levelItem.ItemType);
+        if (OnItemPlaced != null)
+        {
+            OnItemPlaced(levelItem, sameItemsCount);
+        }
     }
 
     public void DeregisterLevelItem(LevelItem levelItem)
     {
         levelItemsToRemove.Add(levelItem);
         levelItem.onDestruction -= DeregisterLevelItem;
-        OnDestruction(levelItem);
+        int sameItemsCount = levelItems.Count(item => item.ItemType == levelItem.ItemType) - 1;
+        if (OnDestruction != null)
+        {
+            OnDestruction(levelItem, sameItemsCount);
+        }
     }
 
     private void Awake()
@@ -42,7 +54,7 @@ public class PlacementSystem : MonoBehaviour
 
         // Update Despawn Time
         float deltaTime = Time.deltaTime;
-        foreach(LevelItem levelItem in levelItems)
+        foreach (LevelItem levelItem in levelItems)
         {
             levelItem.SubtractTime(deltaTime);
         }

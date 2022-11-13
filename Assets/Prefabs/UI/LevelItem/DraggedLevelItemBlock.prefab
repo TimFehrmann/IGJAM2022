@@ -126,7 +126,7 @@ Transform:
   - {fileID: 7465092571356141489}
   - {fileID: 8275096653555665175}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &994380791809194452
 MonoBehaviour:
@@ -539,6 +539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeToDespawn: 15
+  itemType: 1
   timerText: {fileID: 8275096653326261738}
 --- !u!61 &5291453925808453464
 BoxCollider2D:

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,6 +14,8 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     private ShopItem shopItem;
 
     private DraggedLevelItem itemBeingDragged;
+    [SerializeField]
+    private ITEMTYPE assignedType;
     private float zIndex = 0;
 
     private void Awake()
@@ -20,6 +23,21 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         shop = FindObjectOfType<Shop>();
         shopItem = GetComponent<ShopItem>();
         input = inputConfig.InputType == InputConfig.INPUTTYPE.MOUSE ? new MouseInputProcessor() : new TouchInputProcessor();
+    }
+
+    private void Start()
+    {
+        PlacementSystem placementSystem = shop.PlacementSystem;
+        placementSystem.OnItemPlaced += OnItemAmountChanged;
+        placementSystem.OnDestruction += OnItemAmountChanged;
+    }
+
+    private void OnItemAmountChanged(LevelItem itemSpawned, int amountPlaced)
+    {
+        if(itemSpawned.ItemType == assignedType)
+        {
+            shopItem.UpdatePrice(amountPlaced);
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -30,7 +48,7 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         itemBeingDragged = levelItem;
 
         zIndex += 0.01f;
-        itemBeingDragged.transform.position += new Vector3(0,0,zIndex);
+        itemBeingDragged.transform.position += new Vector3(0, 0, zIndex);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -96,7 +114,8 @@ public class DragDropShopItem : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         itemBeingDragged.LevelItemPreview.SetCrossEnabled(displayCross);
     }
 
-    private Vector2 GetMouseWorldPosition() {
+    private Vector2 GetMouseWorldPosition()
+    {
         Vector2 inputPosition = input.InputPosition();
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(inputPosition);
         return worldPosition;

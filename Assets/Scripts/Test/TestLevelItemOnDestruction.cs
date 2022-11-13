@@ -11,7 +11,7 @@ public class TestLevelItemOnDestruction : MonoBehaviour
         placementSystem.OnDestruction += LevelItemOnDestruction;
     }
 
-    private void LevelItemOnDestruction(LevelItem levelItem)
+    private void LevelItemOnDestruction(LevelItem levelItem, int amount)
     {
         Debug.Log("Event: LevelItemOnDestruction - " + levelItem.name);
     }

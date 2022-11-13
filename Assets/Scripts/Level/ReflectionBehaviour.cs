@@ -7,6 +7,8 @@ public class ReflectionBehaviour : MonoBehaviour, IPlaceableBehaviour
     private Collider2D itemCollider;
     [SerializeField]
     private Transform itemtransform;
+    [SerializeField]
+    private SpriteRenderer itemRenderer;
     [Header("Project references")]
     [SerializeField]
     private InputConfig inputConfig;
@@ -45,24 +47,32 @@ public class ReflectionBehaviour : MonoBehaviour, IPlaceableBehaviour
                 Vector2 inputPosition = input.InputPosition();
                 Vector2 worldPosition = Camera.main.ScreenToWorldPoint(inputPosition);
                 itemtransform.LookAtPoint2D(worldPosition);
-                if(!input.IsPressed())
+                if (!input.IsPressed())
                 {
                     inRotationSelection = false;
                     placementIsActive = false;
                     itemCollider.enabled = true;
+                    SetRenderColorAlpha(1f);
                 }
             }
-
         }
     }
 
     public void Place()
     {
         placementIsActive = true;
+        SetRenderColorAlpha(0.5f);
     }
 
     public bool IsPlaced()
     {
         return itemCollider.enabled;
+    }
+
+    private void SetRenderColorAlpha(float alpha)
+    {
+        Color activeColor = itemRenderer.color;
+        activeColor.a = alpha;
+        itemRenderer.color = activeColor;
     }
 }

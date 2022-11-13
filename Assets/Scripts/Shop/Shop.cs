@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class Shop : MonoBehaviour
 {
@@ -6,7 +7,6 @@ public class Shop : MonoBehaviour
 
     [SerializeField] private Transform shopBorderLeft;
     [SerializeField] private Income income;
-
     // Cached
     private PlacementSystem placementSystem;
 

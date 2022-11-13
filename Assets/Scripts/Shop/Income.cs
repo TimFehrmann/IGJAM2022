@@ -12,10 +12,12 @@ public class Income : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI cashText;
     [SerializeField] private IncomeFeedback incomeFeedback;
+    [SerializeField] private TextMeshProUGUI killText;
 
     // Cache
     private int cash;
     private float timePassedOfInterval;
+    private int killCounter = 0;
 
     private Config config;
 
@@ -37,6 +39,13 @@ public class Income : MonoBehaviour
     public void KilledEnemy()
     {
         Add(incomePerKill);
+        killCounter++;
+        UpdateKillText();
+    }
+
+    private void UpdateKillText()
+    {
+        killText.text = "Kills: " + killCounter.ToString();
     }
 
     private void Awake()
@@ -45,6 +54,8 @@ public class Income : MonoBehaviour
         Cash = startCash;
         UpdateCashText();
         UpdateCashTextColor(config.TextColor);
+        killCounter = 0;
+        UpdateKillText();
     }
 
     public void OnUpdate()

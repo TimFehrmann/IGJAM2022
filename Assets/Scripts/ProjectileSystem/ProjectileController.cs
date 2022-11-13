@@ -120,15 +120,17 @@ public class ProjectileController : MonoBehaviour
         projectile.gameObject.SetActive(true);
         activeProjectiles.Add(projectile);
 
-        projectile.OnDestruction += OnProjectileDestruction;
+        projectile.OnDestroy += OnProjectileDestruction;
     }
 
-    private void OnProjectileDestruction(Projectile projectile)
+    private void OnProjectileDestruction(MonoBehaviour monoBehaviour)
     {
+        Projectile projectile = (Projectile)monoBehaviour;
+        
         activeProjectiles.Remove(projectile);
         projectilePool.ReturnToPool(projectile);
 
-        projectile.OnDestruction -= OnProjectileDestruction;
+        projectile.OnDestroy -= OnProjectileDestruction;
     }
 
     private void OnCollisionEnter2D(Collision2D col)

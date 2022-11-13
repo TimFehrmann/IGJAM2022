@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7969742706965477521}
   - component: {fileID: 7969742706965477520}
   - component: {fileID: 3209693422315086109}
+  - component: {fileID: -4820488427759469495}
   m_Layer: 6
   m_Name: Projectile
   m_TagString: Finish
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.304}
 --- !u!212 &7969742706965477522
 SpriteRenderer:
@@ -121,7 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileRenderer: {fileID: 7969742706965477522}
-  explosionParticle: {fileID: 0}
 --- !u!60 &3209693422315086109
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -158,3 +158,16 @@ PolygonCollider2D:
       - {x: 0.268, y: -0.14400001}
       - {x: 0.060000002, y: 0.246}
   m_UseDelaunayMesh: 0
+--- !u!114 &-4820488427759469495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969742706965477527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07dc3f48fdc4600af391a7e8e08b2f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExplodePrefab: {fileID: 2626197291267312889, guid: f60241a4d2d195843acbcf050fdf33e1, type: 3}

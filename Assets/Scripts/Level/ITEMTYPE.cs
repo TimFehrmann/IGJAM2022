@@ -2,5 +2,7 @@
 {
     REFLECTOR,
     BLOCK,
-    TARGET
+    TARGET,
+    TWOWAY,
+    THREEWAY,
 }

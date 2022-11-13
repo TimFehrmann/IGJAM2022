@@ -14,6 +14,7 @@ public class LevelItem : MonoBehaviour
     [SerializeField] private TextMeshPro timerText;
 
     private IPlaceableBehaviour[] placeableBehaviours;
+    private PlacementBlocker placementBlocker;
 
     // Cached
     private float timeRemainingInSeconds;
@@ -21,6 +22,7 @@ public class LevelItem : MonoBehaviour
     private void Awake()
     {
         placeableBehaviours = GetComponentsInChildren<IPlaceableBehaviour>();
+        placementBlocker = GetComponentInChildren<PlacementBlocker>();
         Debug.Log(placeableBehaviours);
     }
 
@@ -32,6 +34,13 @@ public class LevelItem : MonoBehaviour
         {
             behaviour.Place();
         }
+
+        // Enable Placement Blockers
+        if(placementBlocker != null)
+        {
+            placementBlocker.Activate();
+        }
+
     }
 
     public void Despawn()
@@ -40,6 +49,13 @@ public class LevelItem : MonoBehaviour
         {
             behaviour.Despawn();
         }
+
+        // Enable Placement Blockers
+        if (placementBlocker != null)
+        {
+            placementBlocker.Deactivate();
+        }
+
         onDestruction(this);
         Destroy(gameObject);
     }

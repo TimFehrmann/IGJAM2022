@@ -3,16 +3,13 @@ using System.Linq;
 using Assets.Scripts.Utility;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IExplodable
 {
-    [Header("Local References")]
-    [SerializeField]
+    [Header("Local References")] [SerializeField]
     private SpriteRenderer projectileRenderer;
-    [SerializeField]
-    private ParticleSystem explosionParticle;
-
-    public Action<Projectile> OnDestruction;
+    public Action<MonoBehaviour> OnDestroy { get; set; }
 
     private ProjectileSettings projectileSettings;
     private Vector3 projectileVelocity;
@@ -42,11 +39,9 @@ public class Projectile : MonoBehaviour
 
     public void Destroy()
     {
-        //explosionParticle.Play();
-
-        if (OnDestruction != null)
+        if (OnDestroy != null)
         {
-            OnDestruction(this);
+            OnDestroy(this);
         }
     }
 
@@ -74,15 +69,16 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            var enemy= other.transform.GetComponent<Enemy>();
+            var enemy = other.transform.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.Destroy();
             }
-            
-            
+
+
             //TODO DMG Hinzufuegen;
             Destroy();
         }
     }
+
 }

@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5602d0a1f5cdba4499a3c39c14596042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.7
   hitpoints: 2
   enemyColor: {r: 1, g: 1, b: 1, a: 1}
   enemyRenderer: {fileID: 822565881412425995}

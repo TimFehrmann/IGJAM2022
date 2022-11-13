@@ -717,6 +717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemCollider: {fileID: 2979820023358958707}
   itemtransform: {fileID: 1330340312281465081}
+  itemRenderer: {fileID: 1268880768}
   inputConfig: {fileID: 11400000, guid: 962934f958eccc348ab87f6912b6d791, type: 2}
 --- !u!1 &9159139253343667881
 GameObject:
